@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageTitle } from '../components/PageTitle';
+import { SplitWords } from '../components/ScrollEffects';
 import { business, drinksMenu, foodMenu, kidsMenu, type MenuItem } from '../data/site';
 import foodMenuPdf from '../assets/images/menu/Menu SH New.pdf?url';
 import kidsMenuImage from '../assets/images/menu/kids_menu.jpeg';
@@ -109,14 +110,14 @@ function FoodMenu() {
         ))}
       </nav>
 
-      <div className="menu-sheet">
+      <div className="menu-sheet" data-reveal="unfold">
         {foodMenu.map((section) => (
           <section key={section.id} id={section.id} className="menu-section" aria-labelledby={`${section.id}-title`}>
-            <header className="menu-section-head">
+            <header className="menu-section-head" data-reveal="lines">
               <h3 id={`${section.id}-title`}>{section.title}</h3>
               {section.note && <p className="menu-section-note">{section.note}</p>}
             </header>
-            <ul className={`menu-items${section.items.length > 2 ? ' two-col' : ''}`}>
+            <ul className={`menu-items${section.items.length > 2 ? ' two-col' : ''}`} data-reveal-stagger="">
               {section.items.map((item) => (
                 <MenuEntry key={item.name} item={item} />
               ))}
@@ -139,7 +140,7 @@ function FoodMenu() {
 function KidsMenu({ onZoom }: { onZoom: (src: string) => void }) {
   return (
     <div className="kids-menu">
-      <div className="kids-card">
+      <div className="kids-card" data-reveal="slide-left">
         <p className="eyebrow">Kids Menu</p>
         <h2>Little Sailors</h2>
         <div className="kids-rule" aria-hidden="true">
@@ -147,14 +148,18 @@ function KidsMenu({ onZoom }: { onZoom: (src: string) => void }) {
           <Anchor />
           <span />
         </div>
-        <ul className="menu-items">
+        <ul className="menu-items" data-reveal-stagger="side">
           {kidsMenu.map((item) => (
             <MenuEntry key={item.name} item={item} />
           ))}
         </ul>
       </div>
 
-      <button className="kids-art" onClick={() => onZoom(kidsMenuImage)} aria-label="Enlarge kids menu">
+      <button
+        className="kids-art"
+        data-reveal="tilt"
+        style={{ '--delay': '0.2s' } as CSSProperties}
+        onClick={() => onZoom(kidsMenuImage)} aria-label="Enlarge kids menu">
         <img src={kidsMenuImage} alt="Little Sailors kids menu illustration" loading="lazy" />
         <span className="kids-art-hint">View printed menu</span>
       </button>
@@ -165,7 +170,7 @@ function KidsMenu({ onZoom }: { onZoom: (src: string) => void }) {
 function DrinksMenu({ onZoom }: { onZoom: (src: string) => void }) {
   return (
     <>
-      <div className="menu-pages">
+      <div className="menu-pages" data-reveal-stagger="pop">
         {drinksMenu.pages.map((src, i) => (
           <button key={src} className="menu-page" onClick={() => onZoom(src)} aria-label={`Enlarge drinks list page ${i + 1}`}>
             <img src={src} alt={`Drinks list page ${i + 1}`} loading="lazy" />
@@ -203,7 +208,9 @@ export default function Menu() {
       <section className="page-header">
         <div className="container center">
           <p className="eyebrow">Signal Hill · Restaurant &amp; Bar</p>
-          <h1>Menu</h1>
+          <h1>
+            <SplitWords text="Menu" />
+          </h1>
           <p className="lead">Seasonal plates to share, generous mains and something sweet to finish.</p>
           <div className="btn-row">
             <a href={foodMenuPdf} target="_blank" rel="noreferrer" className="btn btn-outline">
@@ -232,7 +239,7 @@ export default function Menu() {
 
       <section id="menus" className="section menu-body">
         <div className="container">
-          <div className="tabs" role="tablist">
+          <div className="tabs" role="tablist" data-reveal="fade-up">
             {tabs.map((t) => (
               <button
                 key={t.id}
@@ -254,7 +261,7 @@ export default function Menu() {
 
       <section className="section cta-band">
         <div className="container center">
-          <h2>Book a table.</h2>
+          <h2 data-reveal="scale-in">Book a table.</h2>
           <Link to="/contact" className="btn">
             Make a Reservation
           </Link>

@@ -5,7 +5,7 @@ import { FacebookIcon, InstagramIcon, MailIcon } from './Icons';
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <div className="container footer-grid">
+      <div className="container footer-grid" data-reveal-stagger="">
         <div>
           <img className="footer-logo" src={images.logo} alt="Signal Hill" />
         </div>

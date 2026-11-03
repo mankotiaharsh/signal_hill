@@ -19,14 +19,14 @@ export default function Newsletter() {
   return (
     <section className="section newsletter">
       <div className="container narrow center">
-        <h2>Stay posted.</h2>
-        <p>Sign up to hear about our news, events and seasonal menus first.</p>
+        <h2 data-reveal="track">Stay posted.</h2>
+        <p data-reveal="fade-up">Sign up to hear about our news, events and seasonal menus first.</p>
         {done ? (
           <p className="newsletter-thanks">
             <strong>Great, you're on our list.</strong> We'll be in touch soon.
           </p>
         ) : (
-          <form className="newsletter-form" onSubmit={submit} noValidate>
+          <form className="newsletter-form" data-reveal="scale-in" onSubmit={submit} noValidate>
             <label htmlFor="nl-email" className="sr-only">
               Email Address
             </label>

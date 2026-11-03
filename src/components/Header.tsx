@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { business, images, mainNav } from '../data/site';
-import { CartIcon, FacebookIcon, InstagramIcon, MailIcon } from './Icons';
+import { /* CartIcon, */ FacebookIcon, InstagramIcon, MailIcon } from './Icons';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -51,10 +51,11 @@ export default function Header() {
           <Link to="/contact" className="btn btn-small header-cta">
             Make a Reservation
           </Link>
+          {/* Cart — disabled for now; uncomment here (and CartIcon import above) to bring it back.
           <Link to="/cart" className="cart" aria-label="Cart, 0 items">
             <CartIcon />
             <span className="cart-count">0</span>
-          </Link>
+          </Link> */}
           <button
             className="burger"
             aria-label={open ? 'Close menu' : 'Open menu'}

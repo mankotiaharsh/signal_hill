@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { usePageTitle } from '../components/PageTitle';
+import { SplitWords } from '../components/ScrollEffects';
 import { business } from '../data/site';
 
 interface Booking {
@@ -45,13 +46,15 @@ export default function Contact() {
     <>
       <section className="page-header">
         <div className="container center">
-          <h1>Make a Reservation</h1>
+          <h1>
+            <SplitWords text="Make a Reservation" />
+          </h1>
         </div>
       </section>
 
       <section className="section">
         <div className="container contact-grid">
-          <div className="booking-card">
+          <div className="booking-card" data-reveal="flip">
             {sent ? (
               <div className="center">
                 <h3>Thank you, {form.name.split(' ')[0] || 'friend'}.</h3>
@@ -113,7 +116,7 @@ export default function Contact() {
             )}
           </div>
 
-          <div className="contact-info">
+          <div className="contact-info" data-reveal-stagger="side">
             <h4>{business.name}</h4>
             <p>{business.addressFull}</p>
             <p>
@@ -131,7 +134,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="map">
+      <section className="map" data-reveal="curtain-up">
         <iframe
           title="Map to Signal Hill"
           src="https://www.google.com/maps?q=24+Victoria+Road,+Devonport,+Auckland+0624&output=embed"

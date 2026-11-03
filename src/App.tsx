@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollEffects from './components/ScrollEffects';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import OurStory from './pages/OurStory';
@@ -25,6 +26,7 @@ export default function App() {
         Skip to Content
       </a>
       <ScrollToTop />
+      <ScrollEffects />
       <Header />
       <main id="page">
         <Routes>
